@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentSecond">
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="@string/message"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize"
+        android:background="@drawable/back_et"
+        android:layout_margin="23dp"
+        android:padding="20dp"
+        />
+    <Button
+        android:id="@+id/btn_Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_top_for_button"
+        android:text="@string/btnSaveText"
+        android:textSize="@dimen/textSize"
+        android:textColor="@color/black"
+        android:background="@drawable/back_btn"
+        app:backgroundTint="@null"
+        />
+</FrameLayout>
