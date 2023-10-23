@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Lecture2_2</string>
+    <string name="message" translatable="false">Sorry, there is nothing</string>
+    <string name="btn1" translatable="false">1</string>
+    <string name="btn2" translatable="false">2</string>
+    <string name="btn3" translatable="false">3</string>
+    <string name="btnFrag3" translatable="false">Кнопка 1</string>
+</resources>
