@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lesson1igor</string>
+    <string name="openSecondAct">Задание 1</string>
+    <string name="openThirdAct">Задание 2</string>
+    <string name="editTextHintSA">Введите имя ученика</string>
+    <string name="addStudentBtn">Добавить ученика</string>
+    <string name="showStudentsBtn">Вывести список\nучеников</string>
+    <string name="dataStudent">Введите данные студента</string>
+</resources>
