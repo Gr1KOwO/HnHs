@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.V27.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:navigationBarColor">@color/black_20pc</item>
+    </style>
+
+    <style name="Theme.Cowboys" parent="Base.V27.Theme">
+        <item name="colorPrimary">@color/smalt</item>
+        <item name="colorSecondary">@color/dark_smalt</item>
+        <item name="snackbarStyle">@style/Widget.App.Snackbar.Error</item>
+        <item name="android:statusBarColor">@color/black_20pc</item>
+        <item name="textInputStyle">@style/Theme.Cowboys.TextInputLayout</item>
+        <item name="materialButtonStyle">@style/Theme.Cowboys.Button</item>
+    </style>
+</resources>

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 
 class Fragment1:Fragment(R.layout.fragment1)
 {
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.btn_1).setOnClickListener {
