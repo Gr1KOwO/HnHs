@@ -12,11 +12,9 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.navigation.fragment.findNavController
 import com.example.lessnon3_igor.R
 import com.example.lessnon3_igor.databinding.FragmentSignInBinding
-import com.example.lessnon3_igor.presentation.ui.catalog.CatalogFragment
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -35,6 +33,7 @@ class SignInFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.buttonSignIn.setOnClickListener {
+            hideKeyboard()
             loading()
         }
         binding.textPassword.setOnEditorActionListener { _, actionId, event ->
@@ -95,10 +94,8 @@ class SignInFragment:Fragment() {
             return
         }
 
-        parentFragmentManager.commit {
-            replace<CatalogFragment>(R.id.container)
-            addToBackStack(null)
-        }
+        val action = SignInFragmentDirections.actionFragmentSignInToFragmentCatalog()
+        findNavController().navigate(action)
     }
     private fun hideKeyboard() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
