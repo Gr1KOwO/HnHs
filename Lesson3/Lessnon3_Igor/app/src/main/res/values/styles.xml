@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance" parent="android:TextAppearance" />
+    <style name="TextAppearance.H1">
+        <item name="android:textSize">@dimen/text_h1_size</item>
+        <item name="android:lineSpacingExtra">@dimen/text_h1_line</item>
+    </style>
+    <style name="Theme.Cowboys.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/seashell</item>
+        <item name="boxStrokeColor">@color/text_field_box_stroke_color</item>
+        <item name="shapeAppearance">
+            @style/Theme.Cowboys.ShapeAppearanceTextInputLayout
+        </item>
+        <item name="android:textAppearance">
+            @style/TextAppearance.TextField
+        </item>
+        <item name="hintTextAppearance">
+            @style/TextAppearance.TextField.Hint
+        </item>
+        <item name="android:textColorHint">@color/silver_chalice</item>
+        <item name="hintTextColor">@color/silver_chalice</item>
+        <item name="endIconTint">@color/black</item>
+        <item name="endIconDrawable">@drawable/text_field_trailing_icon</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="errorTextColor">@color/error</item>
+        <item name="errorIconDrawable">@null</item>
+    </style>
+
+    <style name="Theme.Cowboys.Button" parent="Widget.MaterialComponents.Button.UnelevatedButton"></style>
+    <style name="TextAppearance.TextField">
+    </style>
+
+    <style name="TextAppearance.TextField.Hint">
+        <item name="android:textSize">@dimen/textSizeHint</item>
+    </style>
+
+    <style name="Theme.Cowboys.ShapeAppearanceTextInputLayout" parent="Theme.Cowboys.ShapeAppearance"/>
+    <style name="Theme.Cowboys.ShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">9dp</item>
+    </style>
+    <style name="Widget.App.Snackbar.Error" parent="Widget.Material3.Snackbar">
+        <item name="backgroundTint">@color/error</item>
+        <item name="shapeAppearance">@style/Theme.Cowboys.ShapeAppearance</item>
+    </style>
+</resources>
