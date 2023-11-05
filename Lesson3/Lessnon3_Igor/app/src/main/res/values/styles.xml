@@ -37,7 +37,7 @@
     <style name="Theme.Cowboys.ShapeAppearanceTextInputLayout" parent="Theme.Cowboys.ShapeAppearance"/>
     <style name="Theme.Cowboys.ShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">9dp</item>
+        <item name="cornerSize">8dp</item>
     </style>
     <style name="Widget.App.Snackbar.Error" parent="Widget.Material3.Snackbar">
         <item name="backgroundTint">@color/error</item>
