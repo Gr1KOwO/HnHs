@@ -22,6 +22,7 @@ class  CustomView @JvmOverloads constructor(
 
     private val columnHeights = mutableListOf<Float>()
     private val dateLabels = mutableListOf<String>()
+    private var isAnimating = false
 
     private var lineColor = ContextCompat.getColor(context, R.color.black)
     private var dateColor = ContextCompat.getColor(context, R.color.black)
@@ -150,8 +151,16 @@ class  CustomView @JvmOverloads constructor(
     }
 
     private fun animateLine() {
-        for (i in 0 until columnHeights.size) {
-            val targetHeight = columnHeights[i]
+        if (isAnimating) {
+            return
+        }
+        isAnimating = true
+        val startHeights = columnHeights.toList() // Сохраняем начальные высоты столбцов
+        columnHeights.fill(0f) // Обнуляем все столбцы
+        val columnAnimDelay = 200 // Задержка между анимациями в миллисекундах
+        var totalDuration = 0L
+        for (i in startHeights.indices) {
+            val targetHeight = startHeights[i]
             val startHeight = 0f
 
             val animation = ValueAnimator.ofFloat(startHeight, targetHeight).apply {
@@ -160,9 +169,15 @@ class  CustomView @JvmOverloads constructor(
                     columnHeights[i] = (animator.animatedValue as Float).roundToInt().toFloat()
                     invalidate()
                 }
+                startDelay = (i * columnAnimDelay).toLong()
+                totalDuration = Math.max(totalDuration, duration + startDelay)
             }
             animation.start()
         }
+
+        postDelayed({
+            isAnimating = false
+        }, totalDuration)
     }
 
     //Сохраняем состояние CustomView
