@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="custom_view_width">100dp</dimen>
     <dimen name="custom_view_height">100dp</dimen>
-    <dimen name="custom_view_width">200dp</dimen>
+    <dimen name="custom_view_padding_top">25dp</dimen>
+    <dimen name="custom_view_padding_bottom">25dp</dimen>
+    <dimen name="custom_view_text_size">24px</dimen>
+    <dimen name="column_width">15px</dimen>
+    <dimen name="max_column_height">100px</dimen>
 </resources>

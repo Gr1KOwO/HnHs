@@ -14,4 +14,5 @@
     <color name="red_cancel">#DEF44336</color>
     <color name="light_red">#FFFF5252</color>
     <color name="error">@color/red</color>
+    <color name="text_secondary">@color/silver_chalice</color>
 </resources>

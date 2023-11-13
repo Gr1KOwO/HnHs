@@ -9,4 +9,5 @@
     <string name="error_input">Поле заполнено неверно</string>
     <string name="catalog_title">Каталог</string>
     <string name="sign_in_unexpected_error">Произошла непредвиденная ошибка.\nПожалуйста, попробуйте позже.</string>
+    <string name="product_item_buy_action">Купить</string>
 </resources>

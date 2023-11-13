@@ -11,7 +11,9 @@
     tools:layout="@layout/fragment_sign_in">
     <action
         android:id="@+id/action_fragmentSignIn_to_fragmentCatalog"
-        app:destination="@id/fragmentCatalog" />
+        app:destination="@id/fragmentCatalog"
+        app:popUpTo="@+id/fragmentSignIn"
+        app:popUpToInclusive="true"/>
 </fragment>
 <fragment android:id="@+id/fragmentCatalog"
     android:name="com.example.lessnon3_igor.presentation.ui.catalog.CatalogFragment"

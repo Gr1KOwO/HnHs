@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import kotlin.math.roundToInt
 
 class  CustomView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -23,24 +24,24 @@ class  CustomView @JvmOverloads constructor(
     private val dateLabels = mutableListOf<String>()
 
     private var lineColor = ContextCompat.getColor(context, R.color.black)
-    private var dateColor =  ContextCompat.getColor(context, R.color.black)
+    private var dateColor = ContextCompat.getColor(context, R.color.black)
     private var width = resources.getDimensionPixelSize(R.dimen.custom_view_width)
     private var height = resources.getDimensionPixelSize(R.dimen.custom_view_height)
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
-        textSize = 4f
+        textSize = resources.getDimensionPixelSize(R.dimen.custom_view_text_size).toFloat()
     }
     private val textDatePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
-        textSize = 24f
+        textSize = resources.getDimensionPixelSize(R.dimen.custom_view_text_size).toFloat()
     }
 
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        textSize = 24f
+        textSize = resources.getDimensionPixelSize(R.dimen.custom_view_text_size).toFloat()
     }
 
-    private val columnWidth = 15f
-    private val maxColumnHeight = 100f
+    private val columnWidth = resources.getDimensionPixelSize(R.dimen.column_width).toFloat()
+    private val maxColumnHeight = resources.getDimensionPixelSize(R.dimen.max_column_height).toFloat()
 
     private val simpleDateFormat = SimpleDateFormat("MM.dd", Locale.getDefault())
 
@@ -90,15 +91,16 @@ class  CustomView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val paddingTop = 25.dpToPx()
-        val paddingBottom = 25.dpToPx()
+        val paddingTop = resources.getDimensionPixelSize(R.dimen.custom_view_padding_top).toFloat()
+        val paddingBottom = resources.getDimensionPixelSize(R.dimen.custom_view_padding_bottom).toFloat()
         val drawingHeight = height - paddingTop - paddingBottom
 
         val columnSpacing = width / (columnHeights.size + 1).toFloat()
 
         for (i in 0 until columnHeights.size) {
             val left = columnSpacing * (i + 1) - columnWidth / 2
-            val top = paddingTop + drawingHeight - (columnHeights[i] / maxColumnHeight) * drawingHeight
+            val top =
+                paddingTop + drawingHeight - (columnHeights[i] / maxColumnHeight) * drawingHeight
             val right = left + columnWidth
             val bottom = height - paddingBottom
             canvas.drawRoundRect(left, top, right, bottom, 10f, 10f, paint)
@@ -106,14 +108,14 @@ class  CustomView @JvmOverloads constructor(
             val text = columnHeights[i].toString()
             val textWidth = textPaint.measureText(text)
             val x = (left + right) / 2 - textWidth / 2
-            val y = top - 10 // Расположение текста над столбцом
+            val y = top - 10
             canvas.drawText(text, x, y, textPaint)
 
             // Отрисовка текста даты снизу под столбцом
             val dateText = dateLabels[i]
             val dateTextWidth = textPaint.measureText(dateText)
             val dateX = (left + right) / 2 - dateTextWidth / 2
-            val dateY = height - paddingBottom + 10.dpToPx()
+            val dateY = height - paddingBottom + 25f
             canvas.drawText(dateText, dateX, dateY, textDatePaint)
         }
     }
@@ -155,17 +157,12 @@ class  CustomView @JvmOverloads constructor(
             val animation = ValueAnimator.ofFloat(startHeight, targetHeight).apply {
                 duration = 1000
                 addUpdateListener { animator ->
-                    columnHeights[i] = animator.animatedValue as Float
+                    columnHeights[i] = (animator.animatedValue as Float).roundToInt().toFloat()
                     invalidate()
                 }
             }
             animation.start()
         }
-    }
-
-    private fun Int.dpToPx(): Float {
-        val scale = resources.displayMetrics.density
-        return this * scale
     }
 
     //Сохраняем состояние CustomView
