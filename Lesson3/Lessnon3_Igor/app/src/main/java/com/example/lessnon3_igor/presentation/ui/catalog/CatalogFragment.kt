@@ -2,13 +2,9 @@ package com.example.lessnon3_igor.presentation.ui.catalog
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.createViewModelLazy
@@ -17,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessnon3_igor.databinding.FragmentCatalogBinding
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseStates
-import com.example.lesson6.presentation.exception.getError
+import com.example.lessnon3_igor.presentation.exception.getError
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 class CatalogFragment: Fragment()

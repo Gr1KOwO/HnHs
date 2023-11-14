@@ -1,7 +1,5 @@
 package com.example.lessnon3_igor.presentation
 
-
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +9,6 @@ import com.example.lessnon3_igor.R
 import com.example.lessnon3_igor.presentation.data.repository.PreferenceStorage
 import com.example.lessnon3_igor.presentation.ui.signin.SignInFragmentDirections
 import dagger.android.AndroidInjection
-
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

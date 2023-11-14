@@ -1,5 +1,4 @@
-package com.example.lesson6.presentation.exception
-
+package com.example.lessnon3_igor.presentation.exception
 
 import com.example.lessnon3_igor.presentation.data.responsemodel.ErrorBaseResponse
 import com.google.gson.Gson
