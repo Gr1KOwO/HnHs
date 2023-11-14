@@ -48,10 +48,7 @@ class SignInFragment:Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.buttonSignIn.setOnClickListener {
-            hideKeyboard()
-            navigateToCatalog()
-        }
+        setupSignInAction()
         binding.textPassword.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE ||
                 event.action == KeyEvent.ACTION_DOWN &&
@@ -109,8 +106,10 @@ class SignInFragment:Fragment() {
 
                     val action = SignInFragmentDirections.actionFragmentSignInToFragmentCatalog()
                     findNavController().navigate(action)
+                    binding.buttonSignIn.setStateData()
                 }
                 is ResponseStates.Failure -> {
+                    binding.buttonSignIn.setStateData()
                     Snackbar.make(
                         binding.root,
                         getString(R.string.sign_in_unexpected_error),
@@ -130,12 +129,15 @@ class SignInFragment:Fragment() {
 
     private fun loading()
     {
-        binding.buttonSignIn.text=""
-        binding.loading.isVisible = true
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.buttonSignIn.text=getString(R.string.sign_in)
-            binding.loading.isVisible = false
-        },4000)
+        binding.buttonSignIn.setStateLoading()
+    }
+
+    private fun setupSignInAction() {
+        binding.buttonSignIn.setStateData()
+        binding.buttonSignIn.setOnClickListener {
+            hideKeyboard()
+            navigateToCatalog()
+        }
     }
     override fun onDestroy() {
         super.onDestroy()

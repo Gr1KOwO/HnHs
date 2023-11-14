@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessnon3_igor.databinding.FragmentCatalogBinding
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseStates
+import com.example.lesson6.presentation.exception.getError
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 class CatalogFragment: Fragment()
@@ -41,41 +42,47 @@ class CatalogFragment: Fragment()
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Используем View Binding для получения объекта привязки
         binding = FragmentCatalogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        onLoadProducts()
+    }
 
+    private fun error(error:String)
+    {
+        binding.errorView.isVisible = true
+        binding.errorView.error(error)
+        binding.errorView.setOnRefreshClickListener {
+            onLoadProducts()
+            binding.errorView.replay()
+        }
+    }
+
+    private fun onLoadProducts()
+    {
+        binding.errorView.isVisible = false
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         binding.recyclerView.adapter = productAdapter
 
-        // Наблюдение за изменениями в LiveData
         viewModel.exampleLiveData.observe(viewLifecycleOwner){ response ->
             when (response) {
                 is ResponseStates.Success -> {
+                    binding.errorView.succsess()
                     binding.recyclerView.isVisible = true
                     binding.loading.isVisible = false
                     productAdapter.submitList(response.data.data)
                 }
                 is ResponseStates.Loading -> {
-                    // Show loading state, hide RecyclerView
-                    binding.recyclerView.isVisible = false
-                    binding.loading.isVisible = true
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.loading.isVisible = false
-                    }, 4000)
+                    binding.errorView.replay()
                 }
                 is ResponseStates.Failure -> {
-                    Log.e("CatalogFragment", "Error: ${response.e.message}")
-                    Toast.makeText(requireContext(), "Error: ${response.e.message}", Toast.LENGTH_SHORT).show()
+                    error(response.e.getError().toString())
                 }
             }
         }
-
-        // Вызываем метод загрузки продуктов
         viewModel.getProducts("20", "0")
     }
 }
