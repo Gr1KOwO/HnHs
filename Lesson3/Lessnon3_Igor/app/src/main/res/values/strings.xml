@@ -13,4 +13,5 @@
     <string name="refresh">Обновить</string>
     <string name="errorTitle">Произошла непредвиденная ошибка</string>
     <string name="profile">Профиль</string>
+    <string name="price_format">%s ₽</string>
 </resources>

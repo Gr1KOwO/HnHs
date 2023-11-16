@@ -15,26 +15,6 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Получаем NavController после установки макета
-        try {
-            // Получаем NavController из NavHostFragment
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            val navController = navHostFragment.navController
-
-            // Проверяем наличие токена
-            val preferenceStorage = PreferenceStorage(applicationContext)
-            val userToken = preferenceStorage.userToken
-            Log.i("Token",userToken)
-            if (userToken.isNotEmpty()) {
-                // Токен есть, переходим к CatalogFragment
-                val action = SignInFragmentDirections.actionFragmentSignInToFragmentCatalog()
-                navController.navigate(action)
-            }
-        }catch (e:Exception)
-        {
-            Log.i("ERROOOOORRRR", e.toString())
-        }
-
         fitContentView()
     }
     private fun fitContentView()

@@ -3,7 +3,7 @@
     <style name="TextAppearance.Body.Medium" parent="TextAppearance">
         <item name="android:textSize">@dimen/text_body_medium_size</item>
     </style>
-    <style name="TextAppearance.Subtitle" parent="TextAppearance.AppCompat.Medium">
+    <style name="TextAppearance.Subtitle" parent="TextAppearance">
         <item name="android:textColor">@color/text_secondary</item>
     </style>
     <style name="TextAppearance" parent="android:TextAppearance" />

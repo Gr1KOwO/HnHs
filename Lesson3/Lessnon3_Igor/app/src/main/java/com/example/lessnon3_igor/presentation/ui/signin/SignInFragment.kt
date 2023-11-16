@@ -95,11 +95,6 @@ class SignInFragment:Fragment() {
         viewModel.exampleLiveData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is ResponseStates.Success -> {
-                    val accessToken = result.data.accessToken
-                    // Сохраните токен в SharedPreferences
-                    val preferenceStorage = PreferenceStorage(requireContext())
-                    preferenceStorage.userToken = accessToken
-
                     val action = SignInFragmentDirections.actionFragmentSignInToFragmentCatalog()
                     findNavController().navigate(action)
                     binding.buttonSignIn.setStateData()
