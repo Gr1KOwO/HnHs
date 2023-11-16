@@ -20,8 +20,8 @@ interface ApiLesson {
 
     @GET("products")
     suspend fun getProductList(
-        @Query("limit") limit: String,
-        @Query("offset") offset: String
+        @Query("PageSize") limit: Int,
+        @Query("PageSize") offset: Int,
     ): Products
 
     @GET("products/{id}")

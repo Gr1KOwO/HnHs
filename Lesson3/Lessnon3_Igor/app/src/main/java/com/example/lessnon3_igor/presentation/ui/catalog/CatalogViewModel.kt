@@ -16,7 +16,7 @@ class CatalogViewModel @Inject constructor(
     private val _exampleLiveData = MutableLiveData<ResponseStates<Products>>()
     val exampleLiveData: LiveData<ResponseStates<Products>> = _exampleLiveData
 
-    fun getProducts( limit: String, offset: String) {
+    fun getProducts( limit: Int, offset: Int) {
         viewModelScope.launch {
             _exampleLiveData.value = ResponseStates.Loading()
             try {

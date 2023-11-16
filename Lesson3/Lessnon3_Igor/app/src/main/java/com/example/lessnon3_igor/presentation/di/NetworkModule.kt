@@ -1,5 +1,8 @@
 package com.example.lessnon3_igor.presentation.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.lessnon3_igor.presentation.MyApplication
 import com.example.lessnon3_igor.presentation.data.ApiLesson
 import com.example.lessnon3_igor.presentation.data.interceptors.HeaderInterceptor
 import com.example.lessnon3_igor.presentation.data.repository.PreferenceStorage
@@ -21,11 +24,16 @@ class NetworkModule {
     @Provides
     fun provideOkHttp(
         preferenceStorage: PreferenceStorage,
+        context: Context,
     ) = OkHttpClient.Builder().apply {
         addInterceptor(HeaderInterceptor(preferenceStorage))
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         addInterceptor(loggingInterceptor)
+
+        addInterceptor(ChuckerInterceptor.Builder(context)
+            .alwaysReadResponseBody(true)
+            .build())
     }
         .connectTimeout(20000L, TimeUnit.MILLISECONDS)
         .readTimeout(20000L, TimeUnit.MILLISECONDS)

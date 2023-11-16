@@ -57,6 +57,8 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:4.16.0"
 
+    debugImplementation "com.github.chuckerteam.chucker:library:4.0.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:4.0.0"
 
     def nav_version = '2.7.5'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

@@ -13,7 +13,7 @@ class LessonRepository @Inject constructor(
         return apiLesson.login(RequestLogin(email, password)).data
     }
 
-    suspend fun products(limit: String,offset: String):Products
+    suspend fun products(limit: Int,offset: Int):Products
     {
         return apiLesson.getProductList(limit,offset)
     }

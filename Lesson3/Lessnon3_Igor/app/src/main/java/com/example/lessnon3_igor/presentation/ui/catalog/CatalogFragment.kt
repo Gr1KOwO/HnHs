@@ -79,6 +79,6 @@ class CatalogFragment: Fragment()
                 }
             }
         }
-        viewModel.getProducts("20", "0")
+        viewModel.getProducts(20, 0)
     }
 }
