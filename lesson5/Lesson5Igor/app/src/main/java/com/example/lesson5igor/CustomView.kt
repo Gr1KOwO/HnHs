@@ -23,8 +23,8 @@ class  CustomView @JvmOverloads constructor(
     private val columnHeights = mutableListOf<Float>()
     private val dateLabels = mutableListOf<String>()
     private var isAnimating = false
-    val paddingTop = resources.getDimensionPixelSize(R.dimen.custom_view_padding_top).toFloat()
-    val paddingBottom = resources.getDimensionPixelSize(R.dimen.custom_view_padding_bottom).toFloat()
+    private val paddingTop = resources.getDimensionPixelSize(R.dimen.custom_view_padding_top).toFloat()
+    private val paddingBottom = resources.getDimensionPixelSize(R.dimen.custom_view_padding_bottom).toFloat()
     private var lineColor = ContextCompat.getColor(context, R.color.black)
     private var dateColor = ContextCompat.getColor(context, R.color.black)
     private var width = resources.getDimensionPixelSize(R.dimen.custom_view_width)
