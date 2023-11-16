@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.createViewModelLazy
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lessnon3_igor.R
 import com.example.lessnon3_igor.databinding.FragmentCatalogBinding
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseStates
 import com.example.lessnon3_igor.presentation.exception.getError
@@ -39,6 +41,8 @@ class CatalogFragment: Fragment()
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCatalogBinding.inflate(inflater, container, false)
+        requireActivity().window.statusBarColor =
+            ContextCompat.getColor(requireActivity(), R.color.smalt)
         return binding.root
     }
 
