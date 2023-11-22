@@ -35,16 +35,6 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
         tools:listitem="@layout/product_card" />
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
-
     <com.example.lessnon3_igor.presentation.view.ErrorLayout
         android:id="@+id/errorView"
         android:layout_width="match_parent"

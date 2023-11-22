@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.lessnon3_igor.databinding.ProductCardBinding
 import com.example.lessnon3_igor.presentation.data.dto.Product
 
-class ProductAdapter : ListAdapter<Product, ProductViewHolder>(ProductDiffCallback()) {
+class ProductAdapter(
+    private val onClick: (productId: String) -> Unit
+) : ListAdapter<Product, ProductViewHolder>(ProductDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -17,6 +19,7 @@ class ProductAdapter : ListAdapter<Product, ProductViewHolder>(ProductDiffCallba
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = getItem(position)
+        holder.itemView.setOnClickListener{product?.let{onClick(product.id)} }
         holder.bind(product)
     }
 }

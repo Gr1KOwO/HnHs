@@ -2,7 +2,6 @@ package com.example.lessnon3_igor.presentation.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.example.lessnon3_igor.presentation.MyApplication
 import com.example.lessnon3_igor.presentation.data.ApiLesson
 import com.example.lessnon3_igor.presentation.data.interceptors.HeaderInterceptor
 import com.example.lessnon3_igor.presentation.data.repository.PreferenceStorage

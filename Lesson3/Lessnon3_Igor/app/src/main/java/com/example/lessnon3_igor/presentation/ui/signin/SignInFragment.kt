@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.lessnon3_igor.R
 import com.example.lessnon3_igor.databinding.FragmentSignInBinding
-import com.example.lessnon3_igor.presentation.data.repository.PreferenceStorage
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseStates
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection

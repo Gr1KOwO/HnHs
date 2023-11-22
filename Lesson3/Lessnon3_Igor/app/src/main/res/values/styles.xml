@@ -11,7 +11,7 @@
         <item name="android:textSize">@dimen/text_h1_size</item>
         <item name="android:lineSpacingExtra">@dimen/text_h1_line</item>
     </style>
-    <style name="Theme.Cowboys.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="Theme.Cowboys.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
         <item name="boxBackgroundColor">@color/seashell</item>
         <item name="boxStrokeColor">@color/text_field_box_stroke_color</item>
         <item name="shapeAppearance">
@@ -32,7 +32,7 @@
         <item name="errorIconDrawable">@null</item>
     </style>
 
-    <style name="Theme.Cowboys.Button" parent="Widget.MaterialComponents.Button.UnelevatedButton"></style>
+    <style name="Theme.Cowboys.Button" parent="Widget.Material3.Button.UnelevatedButton"></style>
     <style name="TextAppearance.TextField">
     </style>
     <style name="TextAppearance.TextButton" parent="TextAppearance.AppCompat.Small">
@@ -48,6 +48,25 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
+    <style name="TextAppearance.Product.Price" parent="TextAppearance">
+        <item name="android:textSize">@dimen/text_headline_medium_size</item>
+    </style>
+    <style name="TextAppearance.Product.Badge" parent="TextAppearance.Body.Medium">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TextAppearance.Product.Title" parent="TextAppearance">
+        <item name="android:textSize">@dimen/text_product_title_size</item>
+    </style>
+<style name="TextAppearance.Product.Category" parent="TextAppearance">
+    <item name="android:textColor">@color/text_secondary</item>
+    <item name="android:textSize">@dimen/text_primary_size</item>
+    <item name="android:lineSpacingExtra">@dimen/text_primary_line</item>
+</style>
+
+    <style name="TextAppearance.Product.Description" parent="TextAppearance.Body.Medium"/>
+    <style name="TextAppearance.Product.Details" parent="TextAppearance.Body.Medium">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
     <style name="TextAppearance.TextField.Hint">
         <item name="android:textSize">@dimen/textSizeHint</item>
     </style>
@@ -59,6 +78,10 @@
 
     <style name="TextAppearance.Button.Small" parent="TextAppearance">
         <item name="android:textSize">@dimen/text_body_small_size</item>
+    </style>
+
+    <style name="Widget.App.CardView.ProductPreview" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">@dimen/product_image_item_corner_radius</item>
     </style>
 
     <style name="Theme.Cowboys.ShapeAppearanceTextInputLayout" parent="Theme.Cowboys.ShapeAppearance"/>

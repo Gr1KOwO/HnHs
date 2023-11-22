@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.V27.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.V27.Theme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:navigationBarColor">@color/black_20pc</item>
     </style>
 

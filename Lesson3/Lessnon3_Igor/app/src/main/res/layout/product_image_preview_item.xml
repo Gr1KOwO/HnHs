@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    style="@style/Widget.App.CardView.ProductPreview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:strokeColor="@color/product_image_item_stroke">
+    <ImageView
+        android:id="@+id/image_product_preview"
+        android:layout_width="@dimen/product_item_preview_image_size"
+        android:layout_height="@dimen/product_item_preview_image_size"
+        android:importantForAccessibility="no"
+        android:padding="4dp"
+        android:src="@drawable/ic_launcher_background" />
+</com.google.android.material.card.MaterialCardView>

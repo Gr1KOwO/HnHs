@@ -16,4 +16,5 @@
     <color name="error">@color/red</color>
     <color name="text_secondary">@color/silver_chalice</color>
     <color name="backgroundForms">#F4F4F4</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

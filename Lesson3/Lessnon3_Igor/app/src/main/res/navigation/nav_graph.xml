@@ -19,5 +19,29 @@
     android:name="com.example.lessnon3_igor.presentation.ui.catalog.CatalogFragment"
     android:label="Catalog"
     tools:layout="@layout/fragment_catalog" >
+    <action
+        android:id="@+id/action_fragmentCatalog_to_fragmentProduct"
+        app:destination="@id/fragmentProduct" />
 </fragment>
+<fragment
+    android:id="@+id/fragmentProduct"
+    android:name="com.example.lessnon3_igor.presentation.ui.product.ProductFragment"
+    android:label="Product"
+    tools:layout="@layout/fragment_product">
+    <argument
+        android:name="id"
+        app:argType="string" />
+    <action
+        android:id="@+id/action_fragmentProduct_to_sizeBottomSheetFragment"
+        app:destination="@id/sizeBottomSheetFragment" />
+</fragment>
+    <dialog
+        android:id="@+id/sizeBottomSheetFragment"
+        android:name="com.example.lessnon3_igor.presentation.ui.product.size.SizeBottomSheetFragment"
+        android:label="SizeBottomSheetFragment"
+        tools:layout="@layout/fragment_bottom_sheet">
+        <argument
+            android:name="sizes"
+            app:argType="com.example.lessnon3_igor.presentation.data.responsemodel.ResponseProductSize[]"/>
+    </dialog>
 </navigation>

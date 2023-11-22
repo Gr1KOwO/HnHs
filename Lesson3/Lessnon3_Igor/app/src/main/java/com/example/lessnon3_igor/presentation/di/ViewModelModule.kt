@@ -3,6 +3,7 @@ package com.example.lessnon3_igor.presentation.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.lessnon3_igor.presentation.ui.catalog.CatalogViewModel
+import com.example.lessnon3_igor.presentation.ui.product.ProductViewModel
 import com.example.lessnon3_igor.presentation.ui.signin.ExampleViewModel
 import dagger.Binds
 import dagger.Module
@@ -20,4 +21,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CatalogViewModel::class)
     abstract fun catalogViewModel(exampleViewModel: CatalogViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductViewModel::class)
+    abstract fun productViewModel(exampleViewModel: ProductViewModel): ViewModel
 }

@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.createViewModelLazy
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessnon3_igor.R
@@ -21,7 +22,7 @@ import javax.inject.Inject
 class CatalogFragment: Fragment()
 {
     private lateinit var binding: FragmentCatalogBinding
-    private val productAdapter = ProductAdapter()
+    private val productAdapter = ProductAdapter(onClick=::onProductClick)
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -72,8 +73,7 @@ class CatalogFragment: Fragment()
                 is ResponseStates.Success -> {
                     binding.errorView.succsess()
                     binding.recyclerView.isVisible = true
-                    binding.loading.isVisible = false
-                    productAdapter.submitList(response.data.data)
+                    productAdapter.submitList(response.data)
                 }
                 is ResponseStates.Loading -> {
                     binding.errorView.replay()
@@ -84,5 +84,11 @@ class CatalogFragment: Fragment()
             }
         }
         viewModel.getProducts(20, 0)
+    }
+
+    private fun onProductClick(productId:String)
+    {
+        val action = CatalogFragmentDirections.actionFragmentCatalogToFragmentProduct(productId)
+        findNavController().navigate(action)
     }
 }
