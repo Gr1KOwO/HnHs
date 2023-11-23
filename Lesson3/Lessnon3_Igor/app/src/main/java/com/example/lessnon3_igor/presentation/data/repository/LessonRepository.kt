@@ -9,8 +9,7 @@ import com.example.lessnon3_igor.presentation.data.storage.ProductDB
 import javax.inject.Inject
 
 class LessonRepository @Inject constructor(
-    private val apiLesson: ApiLesson,
-    private val productDB: ProductDB
+    private val apiLesson: ApiLesson
 ) {
     suspend fun login(email: String, password: String): ResponseLogin {
         return apiLesson.login(RequestLogin(email, password)).data
@@ -18,15 +17,7 @@ class LessonRepository @Inject constructor(
 
     suspend fun products(limit: Int,offset: Int):List<Product>
     {
-        return productDB.getProductDao().getProducts().ifEmpty {
-            try {
-                val productsResponse = apiLesson.getProductList(limit, offset).data
-                productDB.getProductDao().addProducts(productsResponse)
-                productsResponse
-            } catch (e: Exception) {
-                throw e
-            }
-        }
+        return  apiLesson.getProductList(limit, offset).data
     }
     suspend fun productDetails(id: String): ResponseProductDetails {
         return apiLesson.getProduct(id).data
