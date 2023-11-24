@@ -1,8 +1,6 @@
 package com.example.lessnon3_igor.presentation.ui.signin
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Patterns
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -10,39 +8,50 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.createViewModelLazy
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.lessnon3_igor.R
 import com.example.lessnon3_igor.databinding.FragmentSignInBinding
+import com.example.lessnon3_igor.presentation.data.repository.PreferenceStorage
+import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseStates
 import com.google.android.material.snackbar.Snackbar
-
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class SignInFragment:Fragment() {
-    private lateinit var binding: FragmentSignInBinding
-    private val MIN_PASSWORD_LENGTH = 6
+    private var _binding: FragmentSignInBinding? = null
+    private val binding get() = _binding!!
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by createViewModelLazy(
+        ExampleViewModel::class,
+        { this.viewModelStore },
+        factoryProducer = { viewModelFactory })
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =  FragmentSignInBinding.inflate(inflater, container, false)
-        return  binding.root
+        _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.buttonSignIn.setOnClickListener {
-            hideKeyboard()
-            loading()
-        }
+        setupSignInAction()
         binding.textPassword.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE ||
                 event.action == KeyEvent.ACTION_DOWN &&
                 event.keyCode == KeyEvent.KEYCODE_ENTER
             ) {
                 hideKeyboard()
-                loading()
+                navigateToCatalog()
                 true
             } else {
                 false
@@ -50,11 +59,11 @@ class SignInFragment:Fragment() {
         }
     }
     private fun isEmailValid(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isNotEmpty()
     }
 
     private fun isPasswordValid(password: String): Boolean {
-        return password.length >= MIN_PASSWORD_LENGTH && password.isNotEmpty()
+        return password.isNotEmpty()
     }
     private fun navigateToCatalog() {
         val email = binding.textLogin.text.toString()
@@ -72,8 +81,6 @@ class SignInFragment:Fragment() {
         if (!isPasswordValid) {
             if (password.isEmpty()) {
                 binding.layoutPassword.error = getString(R.string.error_input)
-            } else {
-                binding.layoutPassword.error = "Пароль должен содержать минимум $MIN_PASSWORD_LENGTH символов"
             }
         } else {
             binding.layoutPassword.error = null
@@ -84,18 +91,27 @@ class SignInFragment:Fragment() {
             return
         }
 
-        if(email != "xhhdjkd@gmail.com" || password !="ffgg2190")
-        {
-            Snackbar.make(
-                binding.root,
-                getString(R.string.sign_in_unexpected_error),
-                Snackbar.LENGTH_SHORT
-            ).show()
-            return
+        viewModel.login(email, password)
+        viewModel.exampleLiveData.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is ResponseStates.Success -> {
+                    val action = SignInFragmentDirections.actionFragmentSignInToFragmentCatalog()
+                    findNavController().navigate(action)
+                    binding.buttonSignIn.setStateData()
+                }
+                is ResponseStates.Failure -> {
+                    binding.buttonSignIn.setStateData()
+                    Snackbar.make(
+                        binding.root,
+                        getString(R.string.sign_in_unexpected_error),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+                is ResponseStates.Loading -> {
+                    loading()
+                }
+            }
         }
-
-        val action = SignInFragmentDirections.actionFragmentSignInToFragmentCatalog()
-        findNavController().navigate(action)
     }
     private fun hideKeyboard() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -104,12 +120,18 @@ class SignInFragment:Fragment() {
 
     private fun loading()
     {
-        binding.buttonSignIn.text=""
-        binding.loading.isVisible = true
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.buttonSignIn.text=getString(R.string.sign_in)
-            binding.loading.isVisible = false
+        binding.buttonSignIn.setStateLoading()
+    }
+
+    private fun setupSignInAction() {
+        binding.buttonSignIn.setStateData()
+        binding.buttonSignIn.setOnClickListener {
+            hideKeyboard()
             navigateToCatalog()
-        },4000)
+        }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

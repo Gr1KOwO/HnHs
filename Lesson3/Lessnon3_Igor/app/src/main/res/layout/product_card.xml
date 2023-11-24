@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:paddingVertical="@dimen/normal_100"
+    android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/image_product"
+        android:layout_width="@dimen/product_item_image_size"
+        android:layout_height="@dimen/product_item_image_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/text_product_title"
+        style="@style/TextAppearance.Body.Medium"
+        android:layout_width="0dp"
+        android:ellipsize="end"
+        android:lines="2"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/image_product"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Product name"/>
+
+    <TextView
+        android:id="@+id/text_product_department"
+        style="@style/TextAppearance.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_title"
+        app:layout_constraintTop_toBottomOf="@id/text_product_title"
+
+        app:layout_constraintVertical_bias="0"
+        tools:text="Product description" />
+
+    <TextView
+        android:id="@+id/text_product_price"
+        style="@style/TextAppearance.Body.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_title"
+        app:layout_constraintTop_toTopOf="@id/text_button_buy"
+        tools:text="99999"/>
+
+    <TextView
+        android:id="@+id/text_button_buy"
+        style="@style/Theme.Cowboys.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/normal_50"
+        android:text="@string/product_item_buy_action"
+        app:drawableStartCompat="@drawable/ic_cart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/text_product_price"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

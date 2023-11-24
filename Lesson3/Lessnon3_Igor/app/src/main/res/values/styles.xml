@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="TextAppearance.Body.Medium" parent="TextAppearance">
+        <item name="android:textSize">@dimen/text_body_medium_size</item>
+    </style>
+    <style name="TextAppearance.Subtitle" parent="TextAppearance">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
     <style name="TextAppearance" parent="android:TextAppearance" />
     <style name="TextAppearance.H1">
         <item name="android:textSize">@dimen/text_h1_size</item>
@@ -29,9 +35,30 @@
     <style name="Theme.Cowboys.Button" parent="Widget.MaterialComponents.Button.UnelevatedButton"></style>
     <style name="TextAppearance.TextField">
     </style>
+    <style name="TextAppearance.TextButton" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.Cowboys.TextButton">
+        <item name="android:textAppearance">@style/TextAppearance.TextButton</item>
+        <item name="android:drawablePadding">@dimen/normal_25</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
 
     <style name="TextAppearance.TextField.Hint">
         <item name="android:textSize">@dimen/textSizeHint</item>
+    </style>
+    <style name="Theme.Cowboys.Button.Small">
+        <item name="android:textAppearance">
+            @style/TextAppearance.Button.Small
+        </item>
+    </style>
+
+    <style name="TextAppearance.Button.Small" parent="TextAppearance">
+        <item name="android:textSize">@dimen/text_body_small_size</item>
     </style>
 
     <style name="Theme.Cowboys.ShapeAppearanceTextInputLayout" parent="Theme.Cowboys.ShapeAppearance"/>
