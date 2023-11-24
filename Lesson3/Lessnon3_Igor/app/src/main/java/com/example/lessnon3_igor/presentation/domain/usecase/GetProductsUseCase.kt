@@ -7,7 +7,11 @@ import javax.inject.Inject
 class GetProductsUseCase @Inject constructor(
     private val repository: LessonRepository,
 ) {
-        suspend fun getProducts( limit: Int, offset: Int): List<Product> {
-            return repository.products(limit,offset)
+    suspend fun getProducts( limit: Int, offset: Int): List<Product> {
+        return repository.getDBProducts().ifEmpty{
+            val productList = repository.products(limit,offset)
+            repository.addAllProducts(productList)
+            return@ifEmpty productList
         }
+    }
 }

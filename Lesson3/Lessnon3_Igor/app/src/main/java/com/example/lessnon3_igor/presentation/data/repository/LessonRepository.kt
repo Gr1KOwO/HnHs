@@ -5,11 +5,13 @@ import com.example.lessnon3_igor.presentation.data.dto.Product
 import com.example.lessnon3_igor.presentation.data.requestmodel.RequestLogin
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseLogin
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseProductDetails
-import com.example.lessnon3_igor.presentation.data.storage.ProductDB
+import com.example.lessnon3_igor.presentation.data.storage.dao.productDAO
+
 import javax.inject.Inject
 
 class LessonRepository @Inject constructor(
-    private val apiLesson: ApiLesson
+    private val apiLesson: ApiLesson,
+    private val productDAO: productDAO
 ) {
     suspend fun login(email: String, password: String): ResponseLogin {
         return apiLesson.login(RequestLogin(email, password)).data
@@ -21,5 +23,13 @@ class LessonRepository @Inject constructor(
     }
     suspend fun productDetails(id: String): ResponseProductDetails {
         return apiLesson.getProduct(id).data
+    }
+    suspend fun getDBProducts():List<Product>
+    {
+        return productDAO.getProducts()
+    }
+
+    suspend fun addAllProducts(listProduct:List<Product>){
+        productDAO.addProducts(listProduct)
     }
 }
