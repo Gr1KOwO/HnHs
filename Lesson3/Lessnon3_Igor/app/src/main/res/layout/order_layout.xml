@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:navigationIcon="@drawable/ic_backarrow"
+        app:navigationIconTint="@color/white"
+        app:titleCentered="true"
+        app:titleTextColor="@color/white"
+        tools:title="@string/order"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/product_item_image_size"
+        android:layout_height="@dimen/product_item_image_size"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="@dimen/normal_200"
+        android:background="@drawable/standart_product_image_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
+
+    <TextView
+        android:id="@+id/productTitle"
+        style="@style/TextAppearance.Body.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/normal_100"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/productDepartment"
+        style="@style/TextAppearance.Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/productTitle"
+        app:layout_constraintStart_toStartOf="@+id/productTitle"
+        app:layout_constraintTop_toBottomOf="@+id/productTitle" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/houseLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="@dimen/normal_300"
+        android:layout_marginEnd="@dimen/normal_100"
+        android:hint="@string/house"
+        app:endIconDrawable="@drawable/ic_chevron_right"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/houseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusableInTouchMode="false"
+            android:longClickable="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/apartmentLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/flat"
+        android:layout_marginTop="@dimen/normal_200"
+        app:layout_constraintEnd_toEndOf="@+id/houseLayout"
+        app:layout_constraintStart_toStartOf="@+id/houseLayout"
+        app:layout_constraintTop_toBottomOf="@+id/houseLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/apartmentText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        style="@style/TextAppearance.AppCompat"
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/minus"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        android:text="@string/minus"
+        android:layout_marginLeft="86dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/toggle_elem_minus"
+        app:layout_constraintBottom_toTopOf="@+id/houseLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/productDepartment" />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat"
+        android:id="@+id/quantity"
+        android:layout_width="48dp"
+        android:layout_height="28dp"
+        android:text="@string/Quantity"
+        android:gravity="center"
+        android:background="@drawable/toggle_elem"
+        app:layout_constraintBottom_toTopOf="@+id/houseLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/minus"
+        app:layout_constraintTop_toBottomOf="@+id/productDepartment" />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat"
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/plus"
+        android:text="@string/plus"
+        android:gravity="center"
+        android:layout_width="32dp"
+        android:clickable="true"
+        android:layout_height="28dp"
+        android:background="@drawable/toggle_elem_plus"
+        app:layout_constraintBottom_toTopOf="@+id/houseLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/quantity"
+        app:layout_constraintTop_toBottomOf="@+id/productDepartment" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/deliveryDateLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_200"
+        android:hint="@string/dateOrder"
+        app:endIconDrawable="@drawable/ic_chevron_right"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="@+id/apartmentLayout"
+        app:layout_constraintStart_toStartOf="@+id/apartmentLayout"
+        app:layout_constraintTop_toBottomOf="@+id/apartmentLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/deliveryDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusableInTouchMode="false"
+            android:longClickable="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.example.lessnon3_igor.presentation.view.LoadableButton
+        android:id="@+id/btnBuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

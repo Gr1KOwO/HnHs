@@ -22,6 +22,14 @@
     <action
         android:id="@+id/action_fragmentCatalog_to_fragmentProduct"
         app:destination="@id/fragmentProduct" />
+
+    <action
+        android:id="@+id/action_fragmentCatalog_to_fragmentOrder"
+        app:destination="@id/fragmentOrder"/>
+    <action
+        android:id="@+id/action_fragmentCatalog_to_fragmentProfile"
+        app:destination="@id/fragmentProfile" />
+
 </fragment>
 <fragment
     android:id="@+id/fragmentProduct"
@@ -34,6 +42,9 @@
     <action
         android:id="@+id/action_fragmentProduct_to_sizeBottomSheetFragment"
         app:destination="@id/sizeBottomSheetFragment" />
+    <action
+        android:id="@+id/action_fragmentProduct_to_fragmentOrder"
+        app:destination="@id/fragmentOrder" />
 </fragment>
     <dialog
         android:id="@+id/sizeBottomSheetFragment"
@@ -43,5 +54,38 @@
         <argument
             android:name="sizes"
             app:argType="com.example.lessnon3_igor.presentation.data.responsemodel.ResponseProductSize[]"/>
+    </dialog>
+
+
+    <fragment
+        android:id="@+id/fragmentOrder"
+        android:label="Order"
+        android:name="com.example.lessnon3_igor.presentation.ui.order.OrderFragment"
+        tools:layout="@layout/order_layout">
+        <argument
+            android:name="product"
+            app:argType="com.example.lessnon3_igor.presentation.ui.order.OrderProduct"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:label="Profile"
+        android:name="com.example.lessnon3_igor.presentation.ui.profile.ProfileSettingsFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_fragmentProfile_to_chosenBottomSheetFragment2"
+            app:destination="@id/chosenBottomSheetFragment" />
+    </fragment>
+
+    <dialog android:id="@+id/chosenBottomSheetFragment"
+        android:name="com.example.lessnon3_igor.presentation.ui.profile.VariableBottomSheetFragment"
+        android:label="BottomSheetFragment"
+        tools:layout="@layout/fragment_bottom_sheet">
+        <argument
+            android:name="variable"
+            app:argType="string[]"/>
+        <argument
+            android:name="action"
+            app:argType="string"/>
     </dialog>
 </navigation>

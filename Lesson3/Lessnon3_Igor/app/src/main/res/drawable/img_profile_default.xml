@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/standard">
+        <shape android:shape="oval">
+            <solid android:color="@color/silver_chalice"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_camera"
+        android:bottom="@dimen/normal_100"
+        android:left="@dimen/normal_100"
+        android:right="@dimen/normal_100"
+        android:top="@dimen/normal_100"/>
+</layer-list>

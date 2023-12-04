@@ -15,4 +15,26 @@
     <string name="price_format">%s ₽</string>
     <string name="buy_now">Купить сейчас</string>
     <string name="product_size_hint">Размер</string>
+    <string name="order">Оформление заказа</string>
+    <string name="buy_order">Купить за %s ₽</string>
+    <string name="house">Дом</string>
+    <string name="flat">Квартира</string>
+    <string name="dateOrder">Дата доставки</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="Quantity">1</string>
+    <string name="no_size">Выберите размер</string>
+    <string name="size">XL</string>
+    <string name="title">%1$s • %2$s</string>
+    <string name="error_snackBar_order">Во время оформления заказа произошла ошибка</string>
+    <string name="success_snackBar_order">Заказ №%1$s от %2$s был усешно оформлен</string>
+    <string name="select">Выбрать</string>
+    <string name="select_home">Выбор дома</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="kind_of_activity">Род деятельности</string>
+    <string name="another_kind_of_activity">Другой род деятельности</string>
+    <string name="refreshDataProfile">Применить</string>
+    <string name="errorCamera">Предоставьте доступ к камере</string>
+    <string name="errorStorage">Предоставьте доступ к памяти устройства</string>
 </resources>
