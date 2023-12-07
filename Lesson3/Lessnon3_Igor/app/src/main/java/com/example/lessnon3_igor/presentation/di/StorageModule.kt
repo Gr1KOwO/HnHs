@@ -13,7 +13,8 @@ class StorageModule {
     @Singleton
     @Provides
     fun provideProductDB(context:Context):ProductDB{
-        return Room.databaseBuilder(context,ProductDB::class.java,"ProductDB").build()
+        return Room.databaseBuilder(context,ProductDB::class.java,"ProductDB")
+            .fallbackToDestructiveMigration().build()
     }
     @Provides
     fun provideDao(database: ProductDB): productDAO{

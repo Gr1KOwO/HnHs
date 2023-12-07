@@ -10,6 +10,6 @@ data class Product(
     @SerializedName("id") val id: String,
     @SerializedName("title") val title: String,
     @SerializedName("department") val department: String,
-    @SerializedName("price") val price: Double,
+    @SerializedName("price") val price: Int,
     @SerializedName("preview") val preview: String
 )
