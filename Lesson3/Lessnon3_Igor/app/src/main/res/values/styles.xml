@@ -32,7 +32,9 @@
         <item name="errorIconDrawable">@null</item>
     </style>
 
-    <style name="Theme.Cowboys.Button" parent="Widget.Material3.Button.UnelevatedButton"></style>
+    <style name="Theme.Cowboys.Button" parent="Widget.Material3.Button.UnelevatedButton">
+        <item name="round">8dp</item>
+    </style>
     <style name="TextAppearance.TextField">
     </style>
     <style name="TextAppearance.TextButton" parent="TextAppearance.AppCompat.Small">

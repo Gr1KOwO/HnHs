@@ -95,12 +95,13 @@
         android:paddingBottom="@dimen/normal_100"
         app:layout_constraintTop_toBottomOf="@id/layout_product_size"
         tools:text="Description" />
-
-    <include
+    <View
         android:id="@+id/view_divider"
-        layout="@layout/view_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:background="@drawable/divider"
+        android:backgroundTint="@color/seashell"
+        android:importantForAccessibility="no"
         app:layout_constraintTop_toBottomOf="@id/text_product_description" />
 
     <androidx.recyclerview.widget.RecyclerView

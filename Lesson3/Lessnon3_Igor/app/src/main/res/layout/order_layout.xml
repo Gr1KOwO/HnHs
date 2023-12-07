@@ -5,17 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_backarrow"
         app:navigationIconTint="@color/white"
         app:titleCentered="true"
         app:titleTextColor="@color/white"
-        tools:title="@string/order"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        app:title="@string/order" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -36,7 +40,9 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        android:layout_marginEnd="@dimen/normal_100"
+        android:layout_marginStart="@dimen/normal_100"/>
 
     <TextView
         android:id="@+id/productDepartment"
@@ -97,7 +103,6 @@
         android:text="@string/minus"
         android:layout_marginLeft="86dp"
         android:gravity="center"
-        android:clickable="true"
         android:background="@drawable/toggle_elem_minus"
         app:layout_constraintBottom_toTopOf="@+id/houseLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,14 +131,14 @@
         android:text="@string/plus"
         android:gravity="center"
         android:layout_width="32dp"
-        android:clickable="true"
         android:layout_height="28dp"
         android:background="@drawable/toggle_elem_plus"
         app:layout_constraintBottom_toTopOf="@+id/houseLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/quantity"
-        app:layout_constraintTop_toBottomOf="@+id/productDepartment" />
+        app:layout_constraintTop_toBottomOf="@+id/productDepartment"
+        android:layout_marginEnd="@dimen/normal_100"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/deliveryDateLayout"
@@ -158,9 +163,12 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.example.lessnon3_igor.presentation.view.LoadableButton
         android:id="@+id/btnBuy"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="@dimen/normal_100"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginBottom="@dimen/normal_100" />
 </androidx.constraintlayout.widget.ConstraintLayout>

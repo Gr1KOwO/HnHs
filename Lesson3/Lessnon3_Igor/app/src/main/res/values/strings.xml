@@ -16,7 +16,7 @@
     <string name="buy_now">Купить сейчас</string>
     <string name="product_size_hint">Размер</string>
     <string name="order">Оформление заказа</string>
-    <string name="buy_order">Купить за %s ₽</string>
+    <string name="buy_order">КУПИТЬ ЗА %s ₽</string>
     <string name="house">Дом</string>
     <string name="flat">Квартира</string>
     <string name="dateOrder">Дата доставки</string>
