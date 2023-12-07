@@ -113,6 +113,10 @@ class ProductFragment: Fragment() {
                     selectSize(product.sizes)
             }
 
+            textProductSize.setOnClickListener{
+                selectSize(product.sizes)
+            }
+
             setFragmentResultListener("sizeResult") { _, bundle ->
                 val selectedSize = bundle.getString("selectedSize")
                 textProductSize.setText(selectedSize)
