@@ -40,9 +40,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        android:layout_marginEnd="@dimen/normal_100"
-        android:layout_marginStart="@dimen/normal_100"/>
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/productDepartment"
@@ -95,50 +93,50 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        style="@style/TextAppearance.AppCompat"
-        android:foreground="?attr/selectableItemBackground"
         android:id="@+id/minus"
+        style="@style/TextAppearance.AppCompat"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:text="@string/minus"
         android:layout_marginLeft="86dp"
+        android:background="@drawable/variant_toggle_minus"
+        android:enabled="false"
+        android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
-        android:background="@drawable/toggle_elem_minus"
-        app:layout_constraintBottom_toTopOf="@+id/houseLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/productDepartment" />
+        android:text="@string/minus"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/quantity"
+        app:layout_constraintEnd_toStartOf="@+id/quantity"
+        app:layout_constraintTop_toTopOf="@+id/quantity" />
 
     <TextView
-        style="@style/TextAppearance.AppCompat"
         android:id="@+id/quantity"
+        style="@style/TextAppearance.AppCompat"
         android:layout_width="48dp"
         android:layout_height="28dp"
-        android:text="@string/Quantity"
-        android:gravity="center"
         android:background="@drawable/toggle_elem"
-        app:layout_constraintBottom_toTopOf="@+id/houseLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/minus"
-        app:layout_constraintTop_toBottomOf="@+id/productDepartment" />
+        android:gravity="center"
+        android:text="@string/Quantity"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/plus"
+        app:layout_constraintEnd_toStartOf="@+id/plus"
+        app:layout_constraintTop_toTopOf="@+id/plus" />
 
     <TextView
-        style="@style/TextAppearance.AppCompat"
-        android:foreground="?attr/selectableItemBackground"
         android:id="@+id/plus"
-        android:text="@string/plus"
-        android:gravity="center"
+        style="@style/TextAppearance.AppCompat"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:background="@drawable/toggle_elem_plus"
-        app:layout_constraintBottom_toTopOf="@+id/houseLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/quantity"
-        app:layout_constraintTop_toBottomOf="@+id/productDepartment"
-        android:layout_marginEnd="@dimen/normal_100"/>
+        android:background="@drawable/variant_toggle_plus"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="@string/plus"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/productTitle"
+        app:layout_constraintHorizontal_bias="0.0"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/deliveryDateLayout"

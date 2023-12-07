@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -95,6 +96,7 @@ class OrderFragment:Fragment() {
         }
         Observer()
         clickListeners()
+        buttonQuantityActivated()
     }
 
     private fun Observer(){
@@ -141,9 +143,11 @@ class OrderFragment:Fragment() {
         }
             binding.minus.setOnClickListener {
                 viewModel.setQuantity(viewModel.getQuantity() - 1)
+                buttonQuantityActivated()
         }
             binding.plus.setOnClickListener {
                 viewModel.setQuantity(viewModel.getQuantity() + 1)
+                buttonQuantityActivated()
             }
     }
 
@@ -181,9 +185,24 @@ class OrderFragment:Fragment() {
                 .format(Date()))
         }
 
+        binding.deliveryDateText.setOnClickListener {
+            binding.deliveryDateText.setText(SimpleDateFormat("d MMMM", Locale("ru", "RU"))
+                .format(Date()))
+        }
+
         binding.houseLayout.setEndIconOnClickListener {
             activityMapLauncher!!.launch(MapActivity.createStartIntent(requireActivity()))
         }
+
+        binding.houseText.setOnClickListener {
+            activityMapLauncher!!.launch(MapActivity.createStartIntent(requireActivity()))
+        }
+    }
+
+    private fun buttonQuantityActivated()
+    {
+        binding.minus.isEnabled = viewModel.getQuantity() != 1
+        binding.plus.isEnabled = viewModel.getQuantity()!=10
     }
 
     private fun isFieldsValid(): Boolean {

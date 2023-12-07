@@ -46,15 +46,13 @@ class VariableBottomSheetFragment: BottomSheetDialogFragment() {
         adapter.submitList(list)
         adapter.setOnItemClickListener {variant ->
             val result = Bundle().apply {
-                putString("selectedVariant", variant)
-                putString("action",args.action)
+                putString(ProfileSettingsFragment.selectedVariant, variant)
+                putString(ProfileSettingsFragment.keyAction,args.action)
             }
-            setFragmentResult("result", result)
+            setFragmentResult(ProfileSettingsFragment.requestKey, result)
             findNavController().popBackStack()
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

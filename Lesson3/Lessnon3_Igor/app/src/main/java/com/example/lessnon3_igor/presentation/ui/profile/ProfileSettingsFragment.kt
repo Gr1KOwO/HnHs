@@ -32,6 +32,7 @@ import javax.inject.Inject
 
 class ProfileSettingsFragment : Fragment() {
 
+
     private object BottomSheetActions {
         const val AVATAR = "avatar"
         const val OCCUPATION = "occupation"
@@ -39,12 +40,19 @@ class ProfileSettingsFragment : Fragment() {
 
     companion object {
         private const val CAMERA_PERMISSION_REQUEST_CODE = 100
-        private const val STORAGE_PERMISSION_REQUEST_CODE = 101
         private const val CAMERA_REQUEST_CODE = 102
         private const val GALLERY_REQUEST_CODE = 103
+
+        const val requestKey = "result"
+        const val keyAction = "action"
+        const val selectedVariant = "selectedVariant"
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
-    private lateinit var binding:FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -52,11 +60,6 @@ class ProfileSettingsFragment : Fragment() {
         ProfileViewModel::class,
         { this.viewModelStore },
         factoryProducer = { viewModelFactory })
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,10 +77,8 @@ class ProfileSettingsFragment : Fragment() {
         clickEvent()
     }
 
-
-    private fun onLoadDataProfile()
-    {
-        viewModel.profileLiveData.observe(viewLifecycleOwner){ response ->
+    private fun onLoadDataProfile() {
+        viewModel.profileLiveData.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ResponseStates.Success -> {
                     initializeProfile(response.data)
@@ -93,8 +94,7 @@ class ProfileSettingsFragment : Fragment() {
         viewModel.executeProfile()
     }
 
-    private fun initializeProfile(profile:ResponseProfile)
-    {
+    private fun initializeProfile(profile: ResponseProfile) {
         binding.nameText.setText(profile.name)
         binding.surnameText.setText(profile.surname)
         binding.kindOfActivityText.setText(profile.occupation)
@@ -103,35 +103,33 @@ class ProfileSettingsFragment : Fragment() {
             .into(binding.profileImg)
         binding.acceptBtn.setText(binding.root.resources.getText(R.string.refreshDataProfile).toString())
 
-        setFragmentResultListener("result") { _, bundle ->
-            val selectedVariant = bundle.getString("selectedVariant")
-            when(bundle.getString("action"))
-            {
-                BottomSheetActions.AVATAR->{
+        setFragmentResultListener(requestKey) { _, bundle ->
+            val selectedVariant = bundle.getString(selectedVariant)
+            when (bundle.getString(keyAction)) {
+                BottomSheetActions.AVATAR -> {
                     when (selectedVariant) {
-                        "Сделать снимок" -> {
+                        resources.getStringArray(R.array.changing_the_avatar)[0] -> {
                             checkCameraPermission()
                         }
-                        "Выбрать из галереи" -> {
-                            checkStoragePermission()
+                        resources.getStringArray(R.array.changing_the_avatar)[1] -> {
+                            openGallery()
                         }
                     }
                 }
 
-                BottomSheetActions.OCCUPATION->{
+                BottomSheetActions.OCCUPATION -> {
                     binding.kindOfActivityText.setText(selectedVariant)
-                    binding.anotherKindOfActivityLayout.isVisible = selectedVariant=="Другое"
+                    binding.anotherKindOfActivityLayout.isVisible = selectedVariant == "Другое"
                 }
             }
         }
     }
 
-    private fun clickEvent()
-    {
+    private fun clickEvent() {
         binding.profileImg.setOnClickListener {
             val action =
                 ProfileSettingsFragmentDirections.actionFragmentProfileToChosenBottomSheetFragment2(
-                    binding.root.resources.getStringArray(R.array.changing_the_avatar),BottomSheetActions.AVATAR
+                    binding.root.resources.getStringArray(R.array.changing_the_avatar), BottomSheetActions.AVATAR
                 )
             findNavController().navigate(action)
         }
@@ -140,17 +138,16 @@ class ProfileSettingsFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        binding.kindOfActivityLayout.setEndIconOnClickListener{
-            val action=
+        binding.kindOfActivityLayout.setEndIconOnClickListener {
+            val action =
                 ProfileSettingsFragmentDirections.actionFragmentProfileToChosenBottomSheetFragment2(
-                    binding.root.resources.getStringArray(R.array.occupationList),BottomSheetActions.OCCUPATION
+                    binding.root.resources.getStringArray(R.array.occupationList), BottomSheetActions.OCCUPATION
                 )
             findNavController().navigate(action)
         }
         binding.topBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-
     }
 
     private fun checkCameraPermission() {
@@ -165,29 +162,18 @@ class ProfileSettingsFragment : Fragment() {
         }
     }
 
-    private fun checkStoragePermission() {
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            openGallery()
-        } else {
-            requestPermissions(
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                STORAGE_PERMISSION_REQUEST_CODE
-            )
-        }
-    }
-
     private fun openCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+        if (cameraIntent.resolveActivity(requireContext().packageManager) != null) {
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+        }
     }
 
     private fun openGallery() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+        if (galleryIntent.resolveActivity(requireContext().packageManager) != null) {
+            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -200,22 +186,7 @@ class ProfileSettingsFragment : Fragment() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openCamera()
                 } else {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.errorCamera),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            }
-            STORAGE_PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openGallery()
-                } else {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.errorStorage),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    showPermissionError(getString(R.string.errorCamera))
                 }
             }
         }
@@ -228,31 +199,26 @@ class ProfileSettingsFragment : Fragment() {
             CAMERA_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val imageBitmap = data?.extras?.get("data") as Bitmap
-                    Glide.with(binding.profileImg)
-                        .load(imageBitmap)
-                        .transform(
-                            MultiTransformation(
-                                CircleCrop()
-                            )
-                        )
-                        .placeholder(R.drawable.img_profile)
-                        .into(binding.profileImg)
+                    loadImageWithGlide(imageBitmap)
                 }
             }
             GALLERY_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     val imageUri = data.data
-                    Glide.with(binding.profileImg)
-                        .load(imageUri)
-                        .transform(
-                            MultiTransformation(
-                                CircleCrop()
-                            )
-                        )
-                        .placeholder(R.drawable.img_profile)
-                        .into(binding.profileImg)
+                    loadImageWithGlide(imageUri.toString())
                 }
             }
         }
+    }
+    private fun loadImageWithGlide(image: Any) {
+        Glide.with(binding.profileImg)
+            .load(image)
+            .transform(MultiTransformation(CircleCrop()))
+            .placeholder(R.drawable.img_profile)
+            .into(binding.profileImg)
+    }
+
+    private fun showPermissionError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }
