@@ -14,5 +14,17 @@
     <dimen name="text_body_medium_size">14sp</dimen>
     <dimen name="normal_25">4dp</dimen>
     <dimen name="text_body_small_size">12sp</dimen>
+    <dimen name="text_headline_medium_size">24sp</dimen>
     <dimen name="roundedImg">8dp</dimen>
+    <dimen name="productRounded">16dp</dimen>
+    <dimen name="padding_height_button_vertical">11dp</dimen>
+    <dimen name="corner_radius">16dp</dimen>
+    <dimen name="text_product_title_size">20sp</dimen>
+    <dimen name="text_primary_size">14sp</dimen>
+    <dimen name="text_primary_line">2sp</dimen>
+    <dimen name="textSizeItemSize">16sp</dimen>
+    <dimen name="product_image_item_corner_radius">8dp</dimen>
+    <dimen name="product_item_preview_image_size">32dp</dimen>
+    <dimen name="product_image_item_corner">@dimen/normal_100</dimen>
+    <dimen name="product_item_preview_item_corner_size">4dp</dimen>
 </resources>

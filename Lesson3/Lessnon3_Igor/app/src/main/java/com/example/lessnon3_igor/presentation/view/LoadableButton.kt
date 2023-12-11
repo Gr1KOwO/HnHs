@@ -38,4 +38,9 @@ class LoadableButton @JvmOverloads constructor(
         super.onDetachedFromWindow()
         binding = null
     }
+
+    fun setText(text: String) {
+        binding?.buttonLoadable?.text = text
+    }
+
 }

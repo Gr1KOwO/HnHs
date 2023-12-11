@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">AppMarket</string>
     <string name="sign_in">Войти</string>
-
     <string name="sign_in_title">@string/sign_in</string>
     <string name="sign_in_login_hint">Логин</string>
     <string name="sign_in_password_hint">Пароль</string>
@@ -14,4 +13,6 @@
     <string name="errorTitle">Произошла непредвиденная ошибка</string>
     <string name="profile">Профиль</string>
     <string name="price_format">%s ₽</string>
+    <string name="buy_now">Купить сейчас</string>
+    <string name="product_size_hint">Размер</string>
 </resources>

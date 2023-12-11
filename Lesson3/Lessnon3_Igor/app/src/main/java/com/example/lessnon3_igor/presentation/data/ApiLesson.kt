@@ -1,10 +1,10 @@
 package com.example.lessnon3_igor.presentation.data
 
-import com.example.lessnon3_igor.presentation.data.dto.ProductData
-import com.example.lessnon3_igor.presentation.data.dto.Products
+import com.example.lessnon3_igor.presentation.data.dto.Product
 import com.example.lessnon3_igor.presentation.data.requestmodel.RequestLogin
 import com.example.lessnon3_igor.presentation.data.responsemodel.BaseResponse
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseLogin
+import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseProductDetails
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
@@ -22,10 +22,10 @@ interface ApiLesson {
     suspend fun getProductList(
         @Query("PageSize") limit: Int,
         @Query("PageSize") offset: Int,
-    ): Products
+    ): BaseResponse<List<Product>>
 
     @GET("products/{id}")
     suspend fun getProduct(
         @Path("id") id: String,
-    ):ProductData
+    ):BaseResponse<ResponseProductDetails>
 }
