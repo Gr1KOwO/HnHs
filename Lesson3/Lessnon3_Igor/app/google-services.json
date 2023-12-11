@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984084554122",
+    "project_id": "androidproj-e979d",
+    "storage_bucket": "androidproj-e979d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984084554122:android:8507cf634978c06ce36873",
+        "android_client_info": {
+          "package_name": "com.example.lessnon3_igor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBclp_7qBPdh7xGTr3MevNgTMy1M8FND7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

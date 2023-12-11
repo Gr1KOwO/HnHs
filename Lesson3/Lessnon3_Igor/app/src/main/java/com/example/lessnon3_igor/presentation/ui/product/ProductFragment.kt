@@ -25,9 +25,11 @@ import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseProduct
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseProductSize
 import com.example.lessnon3_igor.presentation.data.responsemodel.ResponseStates
 import com.example.lessnon3_igor.presentation.exception.getError
+import com.example.lessnon3_igor.presentation.ui.order.OrderProduct
 import com.example.lessnon3_igor.presentation.ui.product.details.ProductDetailsAdapter
 import com.example.lessnon3_igor.presentation.ui.product.image.ProductImageCollectionAdapter
 import com.example.lessnon3_igor.presentation.ui.product.image.ProductPreviewImageCollectionAdapter
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -113,7 +115,8 @@ class ProductFragment: Fragment() {
                     selectSize(product.sizes)
             }
 
-            textProductSize.setOnClickListener{
+
+            textProductSize.setOnClickListener {
                 selectSize(product.sizes)
             }
 
@@ -122,6 +125,17 @@ class ProductFragment: Fragment() {
                 textProductSize.setText(selectedSize)
             }
         }
+
+        binding.buttonBuy.setOnClickListener {
+            if (binding.layoutProductDetails.textProductSize.text.isNullOrEmpty()){
+                 Snackbar.make(
+                    requireView(), resources.getString(R.string.no_size),
+                    Snackbar.LENGTH_SHORT)
+                .show()
+            }
+            else buyClick(product)
+        }
+
         setupAdapters(product)
     }
 
@@ -150,11 +164,10 @@ class ProductFragment: Fragment() {
             titleTextView.getGlobalVisibleRect(titleRect)
 
             if (titleRect.bottom <= 0 || titleRect.top >= nestedScrollView.height) {
-                // Если titleTextView не виден внутри NestedScrollView, отобразим его в toolbar
+                // Если titleTextView не виден внутри NestedScrollView, отображаем его в toolbar
                 materialToolbar.title = titleTextView.text
 
             } else {
-                // В противном случае скроем из toolbar
                 materialToolbar.title = ""
             }
             true
@@ -224,6 +237,19 @@ class ProductFragment: Fragment() {
     private fun selectSize(sizes: List<ResponseProductSize>){
         val sizesArray = sizes.toTypedArray()
         val action = ProductFragmentDirections.actionFragmentProductToSizeBottomSheetFragment(sizesArray)
+        findNavController().navigate(action)
+    }
+    private fun buyClick(product: ResponseProductDetails)
+    {
+        val productToOrder = OrderProduct(
+            product.id,
+            product.title,
+            product.department,
+            product.price.toString(),
+            product.preview,
+            binding.layoutProductDetails.textProductSize.text.toString()
+        )
+        val action = ProductFragmentDirections.actionFragmentProductToFragmentOrder(productToOrder)
         findNavController().navigate(action)
     }
 }

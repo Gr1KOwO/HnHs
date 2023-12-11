@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="changing_the_avatar">
+        <item>Сделать снимок</item>
+        <item>Выбрать из галереи</item>
+    </string-array>
+</resources>

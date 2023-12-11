@@ -21,12 +21,14 @@ class ProductViewModel @Inject constructor(
     private val _selectedImageItemIndex = MutableStateFlow(0)
     val selectedImageItemIndex: StateFlow<Int> get() = _selectedImageItemIndex
 
-    fun getProduct(id: String) = viewModelScope.launch {
-        _productState.value = ResponseStates.Loading()
-        try {
-            _productState.value = ResponseStates.Success(product.execute(id))
-        } catch (e: Exception) {
-            _productState.value = ResponseStates.Failure(e)
+    fun getProduct(id: String) {
+        viewModelScope.launch {
+            _productState.value = ResponseStates.Loading()
+            try {
+                _productState.value = ResponseStates.Success(product.execute(id))
+            } catch (e: Exception) {
+                _productState.value = ResponseStates.Failure(e)
+            }
         }
     }
 
