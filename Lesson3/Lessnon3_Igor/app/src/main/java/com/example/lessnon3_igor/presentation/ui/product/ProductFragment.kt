@@ -115,6 +115,7 @@ class ProductFragment: Fragment() {
                     selectSize(product.sizes)
             }
 
+
             textProductSize.setOnClickListener {
                 selectSize(product.sizes)
             }
